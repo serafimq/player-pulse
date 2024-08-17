@@ -18,6 +18,7 @@ export default defineConfig({
         math: 'parens-division',
       },
       scss: {
+        additionalData: `@import "./src/app/styles/variables/global.scss";`,
         api: 'modern-compiler', // or "modern", "legacy"
         importers: [
           // ...

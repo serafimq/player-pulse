@@ -1,11 +1,44 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.App {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: $background-color;
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
-.App {
-  text-align: center;
-  color: red;
+.contentPage {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+
+  @include mobile {
+    padding: 1rem;
+  }
+}
+
+@include desktop {
+  .contentPage {
+    max-width: calc(100% - #{$navbar-width});
+  }
+}
+
+@include laptop {
+  .contentPage {
+    max-width: calc(100% - #{$navbar-width});
+  }
+}
+
+@include tablet {
+  .contentPage {
+    max-width: calc(100% - #{$navbar-width-tablet});
+  }
+}
+
+@include mobile {  
+  .contentPage {
+    max-width: 100%;
+  }
 }
