@@ -1,5 +1,5 @@
+import { UserPosts } from "../../../features/UserPosts";
+
 export default function AboutPage() {
-    return (
-        <div>About page</div>
-    )
+    return <UserPosts />
 }

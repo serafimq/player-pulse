@@ -1,0 +1,1 @@
+export const PLACHOLDER_URL = 'https://jsonplaceholder.typicode.com';
