@@ -1,46 +1,81 @@
 .App {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  background-color: $background-color;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: $navbar-width 1fr;
+  grid-template-rows: 60px 1fr;
+
+  font-family: $font-family-main;
+  background-color: $color-dark-bg;
+  color: $color-text-white;
 
   @include mobile {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
+
+  @include tablet {
+    grid-template-columns: $navbar-width-tablet 1fr;
   }
 }
 
-.contentPage {
+.header {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  @include mobile {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+}
+
+.navbar {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  background-color: $color-sidebar-bg;
+
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  padding: 2rem;
-  overflow-y: auto;
+  align-items: center;
 
   @include mobile {
-    padding: 1rem;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  @include tablet {
+    width: $navbar-width-tablet;
   }
 }
 
-@include desktop {
-  .contentPage {
-    max-width: calc(100% - #{$navbar-width});
+.collapsed {
+  @include mobile {
+    width: 0;
   }
 }
 
-@include laptop {
-  .contentPage {
-    max-width: calc(100% - #{$navbar-width});
-  }
-}
+.main {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
 
-@include tablet {
-  .contentPage {
-    max-width: calc(100% - #{$navbar-width-tablet});
-  }
-}
+  background-color: inherit;
 
-@include mobile {  
-  .contentPage {
-    max-width: 100%;
+  @include mobile {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+
+  @include tablet {
+    grid-column: 2 / 3;
   }
 }

@@ -1,31 +1,20 @@
-.Navbar {
-    width: $navbar-width;
-    background-color: $primary-color;
-    color: white;
-    padding: 1rem;
-    box-sizing: border-box;
-  
-    // Пример внутреннего расположения элементов навигации
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  
-    @include tablet {
-      width: $navbar-width-tablet;
-    }
-  
-    @include mobile {
-      width: 100%;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
+.logo {
+  font-size: 22px;
+
+  span {
+    color: $color-status-green;
+  }
 }
 
+.subtitle {
+  color: $color-text-gray; 
+}
 
+.items {
+  flex: 1 1 auto;
+  width: 100%;
+}
 
-@include mobile {
-    .Navbar {
-        padding: 0.5rem 1rem;
-    }
+.footer {
+  background-color: $color-accent-purple;
 }

@@ -1,15 +1,25 @@
 import { ReactNode } from "react";
-import { Link, LinkProps } from "react-router-dom";
+import {NavLink, NavLinkProps } from "react-router-dom";
+import styles from './AppLink.module.scss';
+import classNames from "classnames/bind";
 
-interface AppLinkProps extends LinkProps {
-    children?: ReactNode
+interface AppLinkProps extends NavLinkProps {
+    children?: ReactNode;
+    className?: string;
 }
+const cx = classNames.bind(styles);
 
 export function AppLink(props: AppLinkProps) {
-    const {to, children, ...delegated} = props;
+    const {to, className, children, ...delegated} = props;
     return (
-        <Link {...delegated} to={to}>
+        <NavLink 
+        {...delegated} 
+        to={to}
+        className={
+            ({ isActive }) => cx(styles.AppLink, {active : isActive}, [className])
+        }
+        >
             {children}
-        </Link>
+        </NavLink>
     )
 }

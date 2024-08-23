@@ -2,17 +2,20 @@ import React, { Suspense } from 'react';
 import styles from './App.module.scss';
 import { AppRouter } from './providers/router';
 import { Navbar } from '../widgets/Navbar';
-import { useSelector } from 'react-redux';
-import { getUserAuthData, userActions } from '../entities/User';
-import { LoginUser } from '../features/AuthUser';
+import { userActions } from '../entities/User';
 import { useAppDispatch } from '../shared/lib/hooks/useAppDispatch/useAppDispatch';
+import classNames from 'classnames';
+import { useResize } from '../shared/lib/hooks/useResize/useResize';
+import { UserHeader } from '../widgets/UserHeader';
 
 function App() {
-  const authData = useSelector(getUserAuthData);
+  const [collapsed, setCollapsed] = React.useState(false);
+  const {isScreenMd} = useResize();
+
   const dispatch = useAppDispatch();
 
-  function onLogout() {
-    dispatch(userActions.logout())
+  function handleCollapsed() {
+    setCollapsed(prev => !prev);
   }
 
   React.useEffect(() => {
@@ -23,12 +26,16 @@ function App() {
     <>
       <div className={styles.App}>
         <Suspense fallback="">
-          <Navbar />
-          <div className={styles.contentPage}>
-            <div>
-              {authData && <button onClick={onLogout}>Logout</button>}
-              {!authData && <LoginUser />}
-            </div>
+          <UserHeader
+            className={styles.header}
+            isShowNavbarIcon={!isScreenMd}
+            handleCollapsed={handleCollapsed}
+            collapsed={collapsed}
+          />
+          <Navbar
+            className={classNames(styles.navbar, {[styles.collapsed]: collapsed})} 
+          />
+          <div className={styles.main}>
             <AppRouter />
           </div>
         </Suspense>

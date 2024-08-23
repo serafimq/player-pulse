@@ -1,2 +1,7 @@
 @import "reset.scss";
 @import "variables/global.scss";
+
+@font-face {
+    font-family: 'poppins';
+    src: local('poppins'), url(../../shared/assets/fonts/Poppins-Regular.woff) format('woff');
+  }

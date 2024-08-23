@@ -1,0 +1,12 @@
+.AppLink {
+    color: $color-text-white;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.active {
+    background-color: $color-gray-1;
+    border-right: 4px solid $color-accent-purple;
+}   

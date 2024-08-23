@@ -1,13 +1,26 @@
+$font-family-main: poppins, "Times New Roman", serif;
+
 // Переменные
 $desktop-width: 1200px;
 $laptop-width: 992px;
 $tablet-width: 768px;
 $mobile-width: 480px;
 
-// Цвета (вы можете настроить их под себя)
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$background-color: #f8f9fa;
+// Colors
+$color-dark-bg: hsl(240, 10%, 10%);
+$color-sidebar-bg: hsl(240, 15%, 20%);
+$color-accent-purple: hsl(270, 100%, 50%);
+$color-text-white: hsl(0, 0%, 100%);
+$color-text-gray: hsl(0, 0%, 70%);
+$color-status-green: hsl(120, 100%, 40%);
+$color-status-red: hsl(0, 100%, 50%);
+$color-status-yellow: hsl(60, 100%, 50%);
+$color-gray-1: hsl(0, 0%, 20%);
+$color-gray-2: hsl(0, 0%, 30%);
+$color-gray-3: hsl(0, 0%, 40%);
+$color-gray-4: hsl(0, 0%, 50%);
+
+
 $navbar-width: 250px;
 $navbar-width-tablet: 200px;
 
