@@ -1,0 +1,51 @@
+.wrapper {
+    position: relative;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.wave {
+    position: absolute;
+    background-image: url('../../../../shared/assets/pictures/wave.svg');
+    width: 100%;
+    height: 200px;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+}
+
+.title {
+    margin-bottom: 32px;
+    font-size: 32px;
+    font-weight: 500;
+    max-width: 200px;
+    z-index: 1;
+}
+
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    width: 100%;
+}
+
+.forgottenPassword {
+    align-self: center;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.button {
+    align-self: center;
+    margin-bottom: 48px;
+}
+
+.footer {
+    align-self: center;
+    font-size: 12px;
+    span {
+        text-decoration: underline;
+    }
+}

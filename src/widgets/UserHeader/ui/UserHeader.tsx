@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import styles from './UserHeader.module.scss';
 import { useAppDispatch } from '../../../shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData, userActions } from '../../../entities/User';
-import { LoginUser } from '../../../features/AuthUser';
+import { LoginModal } from '../../../features/AuthUser';
 import classNames from 'classnames';
 import MenuIcon from '../../../shared/assets/icons/menu-20-20.svg?react';
 import CloseIcon from '../../../shared/assets/icons/close-20-20.svg?react';
@@ -42,7 +42,7 @@ export function UserHeader(props: UserHeaderProps) {
             </div>
             <div  className={styles.auth}>
                 {authData && <button onClick={onLogout}>Logout</button>}
-                {!authData && <LoginUser />}
+                {!authData && <LoginModal />}
             </div>
         </div>
     )
