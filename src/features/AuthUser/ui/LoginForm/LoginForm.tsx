@@ -19,8 +19,9 @@ export function LoginForm({className}: LoginFormProps) {
     const dispatch = useAppDispatch();
     const error = useSelector(getLoginError);
     const isLoading = useSelector(getLoginIsLoading)
-    async function hendleLogin() {
-        const result = await dispatch(loginUser());
+    
+    async function hendleLogin(formData: LoginFormSchema) {
+        const result = await dispatch(loginUser(formData));
         if (result.meta.requestStatus === 'fulfilled') {
             console.log('Success');
         }
@@ -31,18 +32,14 @@ export function LoginForm({className}: LoginFormProps) {
         password: '',
       },
     })
-    const onSubmit: SubmitHandler<LoginFormSchema> = (data) => {
-        console.log(data);
-        hendleLogin();
+    const onSubmit: SubmitHandler<LoginFormSchema> = (formData) => {
+        hendleLogin(formData);
     };
-
-    if (error) {
-        return <div>It looks like something is wrong!</div>
-    }
 
     return (
         <div className={styles.wrapper}>  
             <div className={styles.wave}></div>
+            {error && <div className={styles.errorMessage}>It looks like something is wrong!</div>}
             <h2 className={styles.title}>Hello there, welcome back</h2>
             <form
                 className={classNames(styles.LoginForm, [className])}

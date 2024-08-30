@@ -7,6 +7,8 @@ import { useAppDispatch } from '../shared/lib/hooks/useAppDispatch/useAppDispatc
 import classNames from 'classnames';
 import { useResize } from '../shared/lib/hooks/useResize/useResize';
 import { UserHeader } from '../widgets/UserHeader';
+import { supabase } from '../shared/lib/supabase';
+import { AuthChangeEvent, Session } from '@supabase/supabase-js';
 
 function App() {
   const [collapsed, setCollapsed] = React.useState(false);
@@ -19,8 +21,18 @@ function App() {
   }
 
   React.useEffect(() => {
-    dispatch(userActions.initAuthData());
-  }, [dispatch])
+      const { data } = supabase.auth.onAuthStateChange((event: AuthChangeEvent, session: Session | null) => {
+        console.log({event});
+          if (event === "SIGNED_IN" && session?.user) {
+              dispatch(userActions.initAuthData(session?.user));
+          } else if (event === "SIGNED_OUT") {
+              dispatch(userActions.logout()); 
+          }
+      });
+      return () => {
+        data.subscription.unsubscribe();
+      };
+    }, [dispatch]); 
 
   return (
     <>

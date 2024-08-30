@@ -5,6 +5,11 @@
     flex-direction: column;
 }
 
+.errorMessage {
+    color: $color-status-red;
+    z-index: 1;
+}
+
 .wave {
     position: absolute;
     background-image: url('../../../../shared/assets/pictures/wave.svg');

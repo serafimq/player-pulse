@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import styles from './Modal.module.scss';
 import classNames from "classnames";
@@ -11,37 +11,38 @@ interface ModalProps {
     children: ReactNode;
     title?: string;
     buttonText: string;
+    isOpen: boolean;
+    onClose: () => void;
+    onOpen: () => void;
 }
 
 export function Modal(props: ModalProps) {
-    const {children, className, title, buttonText} = props;
-
-    const [isOpen, setIsOpen] = React.useState(false);
-  
-    function open() {
-      setIsOpen(true)
-    }
-  
-    function close() {
-      setIsOpen(false)
-    }
+    const {
+        children, 
+        className, 
+        title, 
+        buttonText, 
+        isOpen,
+        onOpen,
+        onClose,
+    } = props;
     return (
         <>
             <MyButton
-                onClick={open}
+                onClick={onOpen}
                 className={styles.openButton}
             >
                 {buttonText}
             </MyButton>
             <Dialog
                 open={isOpen}  
-                onClose={close}
+                onClose={onClose}
                 as="div"
                 className={styles.wrapper}
             >
                 <div
                     className={styles.backdrop}
-                    onClick={close}
+                    onClick={onClose}
                 />
                 <DialogPanel
                     transition
@@ -49,7 +50,7 @@ export function Modal(props: ModalProps) {
                 >
                     <Button
                         className={styles.closeBtn}
-                        onClick={close}
+                        onClick={onClose}
                     >
                         <Icon Svg={CloseIcon} />
                     </Button>

@@ -5,12 +5,18 @@ import { loginUser } from "../services/loginUser";
 
 const initialState: LoginSchema = {
     isLoading: false,
+    email: '',
+    password: '',
 }
 
 export const loginSlice = createSlice({
     name: 'login',
     initialState,
-    reducers: {},
+    reducers: {
+        resetError: (state) => {
+            state.error = undefined;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginUser.pending, state => {
