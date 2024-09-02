@@ -2,7 +2,6 @@ import { Description, Field, Input, Label } from "@headlessui/react";
 import styles from './MyInput.module.scss';
 import React, { InputHTMLAttributes } from "react";
 import classNames from "classnames";
-import { FieldError } from "react-hook-form";
 
 
 type HTMLInputProps = Omit<
@@ -19,7 +18,7 @@ interface InputProps extends HTMLInputProps {
     label?: string;
     description?: boolean;
     isRequired?: boolean;
-    error?: FieldError;
+    error?: string;
 }
 
 export const MyInput = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
@@ -56,7 +55,7 @@ export const MyInput = React.forwardRef<HTMLInputElement, InputProps>((props, re
                 {label}{isRequired && <span>*</span>}
             </Label>}
             </Field>
-            {error && <div className={styles.error}>{error.message}</div>}
+            {error && <div className={styles.error}>{error}</div>}
         </div>
     )
 });

@@ -1,33 +1,36 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { userActions } from "../../../../entities/User";
+import { User } from "@supabase/supabase-js";
 import { ThunkConfig } from "../../../../app/providers/StoreProvider/config/StateSchema";
 import { supabase } from "../../../../shared/lib/supabase";
-import { User } from "@supabase/supabase-js";
-import { loginActions } from "../slice/loginSlice";
+import { userActions } from "../../../../entities/User";
 
-interface LoginByEmailProps {
+
+interface RegisterByEmailProps {
     email: string;
     password: string;
 }
-export const loginUser = createAsyncThunk<
-    User,
-    LoginByEmailProps,
+
+export const registerUser = createAsyncThunk<
+    User | null,
+    RegisterByEmailProps,
     ThunkConfig<string>
->('login/loginUser', async (userData, thunkApi) => {
+>('login/registerUser', async (userData, thunkApi) => {
     const {dispatch, rejectWithValue} = thunkApi;
     try {
         const {
             data: { user, session },
             error
-          } = await supabase.auth.signInWithPassword(userData);
+          } = await supabase.auth.signUp(userData);
+
         if (!session?.user) {
-            dispatch(loginActions.setError(error));
             throw new Error();
         }
-        dispatch(userActions.setAuthData(user));
+        if (!error && user) {
+            dispatch(userActions.setAuthData(user));
+        }
         return user;
     } catch (e) {
-        dispatch(loginActions.setError(e));
+        console.log(e);
         return rejectWithValue('error');
     }
-});
+})

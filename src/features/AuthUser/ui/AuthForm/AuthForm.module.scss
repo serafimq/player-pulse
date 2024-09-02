@@ -1,6 +1,6 @@
 .wrapper {
     position: relative;
-    padding: 32px;
+    padding: 32px 32px 0;
     display: flex;
     flex-direction: column;
 }
@@ -29,28 +29,30 @@
     z-index: 1;
 }
 
-.LoginForm {
+.form {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 24px;
     width: 100%;
 }
 
-.forgottenPassword {
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+}
+
+.formFooter {
     align-self: center;
     font-size: 12px;
+    text-align: center;
+}
+
+.forgottenPassword {
     text-decoration: underline;
 }
 
 .button {
     align-self: center;
     margin-bottom: 48px;
-}
-
-.footer {
-    align-self: center;
-    font-size: 12px;
-    span {
-        text-decoration: underline;
-    }
 }

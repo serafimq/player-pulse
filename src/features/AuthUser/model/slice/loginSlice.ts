@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LoginSchema } from "../types/LogisSchema";
 import { loginUser } from "../services/loginUser";
+import { registerUser } from "../services/registerUser";
 
 
 const initialState: LoginSchema = {
@@ -15,6 +16,9 @@ export const loginSlice = createSlice({
     reducers: {
         resetError: (state) => {
             state.error = undefined;
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -27,6 +31,17 @@ export const loginSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(loginUser.rejected, (state, actions) => {
+                state.isLoading = false;
+                state.error = actions.payload;
+            })
+            .addCase(registerUser.pending, state => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(registerUser.fulfilled, state => {
+                state.isLoading = false;
+            })
+            .addCase(registerUser.rejected, (state, actions) => {
                 state.isLoading = false;
                 state.error = actions.payload;
             })

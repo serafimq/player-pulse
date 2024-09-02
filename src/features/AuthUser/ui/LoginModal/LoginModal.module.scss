@@ -1,4 +1,18 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 32px;
+}
+
 .LoginModal {
     background-color: $color-modal-bg;
     color: $color-text-white;
+}
+
+.footer {
+    align-self: center;
+    font-size: 12px;
+    span {
+        text-decoration: underline;
+    }
 }

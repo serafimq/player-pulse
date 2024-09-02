@@ -8,5 +8,18 @@ export interface LoginSchema {
 export interface LoginFormSchema {
     email: string;
     password: string;
-  }
+}
+
+export interface RegisterFormSchema {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+export interface AuthFormSchema {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+  
   
